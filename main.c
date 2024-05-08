@@ -3,6 +3,7 @@
 int	main(int ac, char **av)
 {
 	//u should kow to debug ur code 
+	// khasni nzid function strlowercase before comparing
 	if ((ac == 2 && ft_strcmp(av[1], "mandelbort")) || (ac == 4
 			&& ft_strcmp(av[1], "julia")))
 	{

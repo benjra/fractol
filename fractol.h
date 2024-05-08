@@ -18,6 +18,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	double zoom;
 
 }			t_mlx;
 
@@ -37,5 +38,27 @@ typedef struct s_image
 	int		line_len;
 	int		endian;
 }			t_image;
+
+
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+typedef struct mouse
+{
+	double crs_cx;
+	double crs_cy;
+	double max;
+	double min;
+	double max_iteration;
+
+}	t_mouse;
+
 
 #endif

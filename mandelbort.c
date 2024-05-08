@@ -1,5 +1,16 @@
 #include "fractol.h"
 
+int  mouse_zoom(t_mlx vars,int key)
+{
+	printf("%d", key);
+	if(key==4)
+	vars.zoom*=1.2;
+	else if(key==5)
+	vars.zoom/=1.2;
+	calcule_mandel();
+	return key;
+	
+}
 int	calcule_mand(int i, int it_max, t_complex comp)
 {
 	double	temp;
@@ -35,6 +46,7 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 {
 	int		y;
 	int		x;
+	double zoom = 2.2;
 	double	real;
 	double	imag;
 			t_complex comp;
@@ -48,8 +60,8 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 		x = 0;
 		while (x < width)
 		{
-			real = (x - width / 2.0) * 4.0 / width;
-			imag = (y - height / 2.0) * 4.0 / height;
+			real = (x - width / 2.0) * 4.0 / width * zoom;
+			imag = (y - height / 2.0) * 4.0 / height * zoom;
 			i = 0;
 			pos = 0;
 			comp.c_real = real;
@@ -64,7 +76,12 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 		y++;
 	}
 }
-
+int closing(int keycode,t_mlx mlx)
+{
+	if(keycode==2)
+	mlx_destroy_window(mlx.mlx,mlx.mlx_win); //correct this 
+	return(0);
+}
 void	mandel(void)
 {
 	int		width;
@@ -81,7 +98,10 @@ void	mandel(void)
 	image.img = mlx_new_image(minilibix.mlx, width, height);
 	image.buffer = mlx_get_data_addr(image.img, &image.pixel_bits,
 			&image.line_len, &image.endian);
+	mlx_mouse_hook(minilibix.mlx_win, mouse_zoom,&minilibix);
 	calcule_mandel(width, height, it_max, image);
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
+	mlx_hook(minilibix.mlx_win,2,1<<0,closing,&minilibix);//
 	mlx_loop(minilibix.mlx);
+	
 }

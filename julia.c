@@ -47,11 +47,11 @@ void	calcule_julia(int width, int height, t_image image, t_complex comp,
 	{
 		x = 0;
 		while (x < width)
-		{
-			real = (x - width / 2.0) * 4.0 / width;
-			imag = (y - height / 2.0) * 4.0 / height;
+		{	
 			i = 0;
 			pos = 0;
+			real = (x - width / 2.0) * 4.0 / width;//scalling
+			imag = (y - height / 2.0) * 4.0 / height;
 			comp.z_real = real;
 			comp.z_imag = imag;
 			i = calcule(i, it_max, comp);
@@ -70,7 +70,6 @@ void	julia(double cr, double ci)
 	int			it_max;
 	t_image		image;
 	t_complex	comp;
-	//char		*buffer;
 
 	width = 800;
 	height = 860;
