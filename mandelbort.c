@@ -1,5 +1,5 @@
 #include "fractol.h"
-
+#include <mlx.h>
 // int  mouse_zoom(t_mlx vars,int key)
 // {
 // 	printf("%d", key);
@@ -82,10 +82,11 @@ int closing(int keycode,t_mlx mlx)
 	mlx_destroy_window(mlx.mlx,mlx.mlx_win); //correct this 
 	return(0);
 }
-int	handle_input(int keysym, t_mlx *data)
+int	handle_input(int keysym)
 {
-    if (keysym == 2)
-        mlx_destroy_window(data->mlx, data->mlx_win);
+    //if (keysym == 2)
+    //mlx_destroy_window(data->mlx, data->mlx_win);
+	printf("%d",keysym);
     return (0);
 }
 void	mandel(void)
@@ -112,12 +113,13 @@ void	mandel(void)
 			&image.line_len, &image.endian);
 
 	//mlx_loop_hook(minilibix.mlx_win, &handle_no_event, &data);
-    mlx_key_hook(minilibix.mlx_win, &handle_input, &minilibix);
+   
 
-	//mlx_mouse_hook(minilibix.mlx_win, mouse_zoom,&minilibix);
 	calcule_mandel(width, height, it_max, image);
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
-	//mlx_hook(minilibix.mlx_win,2,1<<0,closing,&minilibix);//
+
+	mlx_key_hook(minilibix.mlx_win, &handle_input, &minilibix);
+
 	mlx_loop(minilibix.mlx);
 
 	mlx_destroy_display(minilibix.mlx);
