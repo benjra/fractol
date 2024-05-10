@@ -40,7 +40,7 @@ int is_valid(char *av)
     int f = 0;
     if (av[i]== '+'||av[i]== '-')
         av++;
-  while(av[i] && (ft_isdigit(av[i]) || (av[i] == '.' && i != 0 && av[i+1])))
+  while(av[i] && (ft_isdigit(av[i]) || (av[i] == '.' && av[i+1])))
     {
         if (av[i]== '.')
             f++;
