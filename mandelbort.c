@@ -84,7 +84,7 @@ int closing(int keycode,t_mlx mlx)
 }
 int	handle_input(int keysym, t_mlx *data)
 {
-    if (keysym == 27)
+    if (keysym == 2)
         mlx_destroy_window(data->mlx, data->mlx_win);
     return (0);
 }
