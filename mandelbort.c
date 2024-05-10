@@ -76,10 +76,12 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 		y++;
 	}
 }
-int closing(int keycode,t_mlx mlx)
+int closing(t_mlx mlx)
 {
-	if(keycode==2)
+	mlx_destroy_image();
+	mlx_destroy();
 	mlx_destroy_window(mlx.mlx,mlx.mlx_win); //correct this 
+	free(mlx);
 	return(0);
 }
 int	handle_input(int keysym)
@@ -119,6 +121,7 @@ void	mandel(void)
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
 
 	mlx_key_hook(minilibix.mlx_win, &handle_input, &minilibix);
+	mlx_hook(minilibix.mlx_win,17,0,closing,&minilibix);
 
 	mlx_loop(minilibix.mlx);
 
