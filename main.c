@@ -21,11 +21,11 @@ int	main(int ac, char **av)
 		else if (ft_strcmp(av[1], "julia") && is_valid(av[2]) && is_valid(av[3]))
 			julia(ft_atod(av[2]), ft_atod(av[3]));
 		else
-			printf("Please Enter :\nmandelbort OR julia <x> <y> ");
+			print_str("Please Enter :\nmandelbort OR julia <x> <y> ");
 	}
 	else
 	{
-		printf("Please Enter :\nmandelbort OR julia <x> <y> ");
+		print_str("Please Enter :\nmandelbort OR julia <x> <y> ");
 		exit(1);
    
 	}

@@ -82,6 +82,12 @@ int closing(int keycode,t_mlx mlx)
 	mlx_destroy_window(mlx.mlx,mlx.mlx_win); //correct this 
 	return(0);
 }
+int	handle_input(int keysym, t_mlx *data)
+{
+    if (keysym == 27)
+        mlx_destroy_window(data->mlx, data->mlx_win);
+    return (0);
+}
 void	mandel(void)
 {
 	int		width;
@@ -95,13 +101,26 @@ void	mandel(void)
 	it_max = 200;
 	minilibix.mlx = mlx_init();
 	minilibix.mlx_win = mlx_new_window(minilibix.mlx, width, height, "fractol");
+	if(minilibix.mlx_win==NULL)
+	{
+		free(minilibix.mlx_win);
+        exit(1);
+	}
+
 	image.img = mlx_new_image(minilibix.mlx, width, height);
 	image.buffer = mlx_get_data_addr(image.img, &image.pixel_bits,
 			&image.line_len, &image.endian);
+
+	//mlx_loop_hook(minilibix.mlx_win, &handle_no_event, &data);
+    mlx_key_hook(minilibix.mlx_win, &handle_input, &minilibix);
+
 	//mlx_mouse_hook(minilibix.mlx_win, mouse_zoom,&minilibix);
 	calcule_mandel(width, height, it_max, image);
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
-	mlx_hook(minilibix.mlx_win,2,1<<0,closing,&minilibix);//
+	//mlx_hook(minilibix.mlx_win,2,1<<0,closing,&minilibix);//
 	mlx_loop(minilibix.mlx);
+
+	mlx_destroy_display(minilibix.mlx);
+    free(minilibix.mlx);
 	
 }

@@ -4,7 +4,8 @@ CC = cc
 SRC_FILE =main.c \
 		 mandelbort.c \
 		 julia.c \
-		 utils.c
+		 utils.c \
+		 printstr.c
 OBJ = $(SRC_FILE : .o:.c)
 
 %.o: %.c

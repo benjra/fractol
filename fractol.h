@@ -13,6 +13,7 @@ int			ft_strcmp(char *s1, char *s2);
 double    ft_atod(char *str);
 int			ft_isdigit(int c);
 int			is_valid(char *av);
+void print_str(char *str);
 
 typedef struct s_mlx
 {
