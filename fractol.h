@@ -46,7 +46,7 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*mlx_win;
 	double zoom;
-	t_image image;
+	t_image *image;
 	t_mouse mouse;
 }			t_mlx;
 
@@ -72,6 +72,6 @@ void initialiser(t_mouse vars);
 int  mouse_hook(int key,t_mlx *vars);
 int	handle_keys(int keysym,t_mlx *data);
 //int closing(int keyy,t_mlx mlx);
-void	calcule_mandel(int width, int height, int it_max, t_image image);
+void	calcule_mandel(int width, int height, int it_max, t_mlx	*minilibix);
 
 #endif

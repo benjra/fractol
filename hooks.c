@@ -36,12 +36,12 @@ int  mouse_hook(int key,t_mlx *vars)
 		vars->zoom*=1.15;
 		else if(key==5)
 		vars->zoom*=0.85;
-		mlx_destroy_image(vars->image.img,vars);
+		mlx_destroy_image(vars, vars->image);
 		initialiser(vars->mouse);
-		vars->image.img = mlx_new_image(vars->mlx, vars->width,vars->height);
-		vars->image.buffer= mlx_get_data_addr(vars->image.img, &vars->image.pixel_bits,
-			&vars->image.line_len, &vars->image.endian);
-	calcule_mandel(vars->width,vars->height,vars->mouse.max_iteration,vars->image);
+		// vars->image.img = mlx_new_image(vars->mlx, vars->width,vars->height);
+		// vars->image.buffer= mlx_get_data_addr(vars->image.img, &vars->image.pixel_bits,
+		// 	&vars->image.line_len, &vars->image.endian);
+	calcule_mandel(vars->width,vars->height,vars->mouse.max_iteration,vars);
 	}
 	return key;
 	

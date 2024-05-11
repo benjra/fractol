@@ -32,7 +32,7 @@ void	coloring_mand(int pos, int i, t_image image, int it_max)
 	}
 }
 
-void	calcule_mandel(int width, int height, int it_max, t_image image)
+void	calcule_mandel(int width, int height, int it_max, t_mlx	*minilibix)
 {
 	int		y;
 	int		x;
@@ -44,6 +44,9 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 
 	y = 0;
 	x = 0;
+	minilibix->image->img = mlx_new_image(minilibix->mlx, width, height);
+	minilibix->image->buffer = mlx_get_data_addr(minilibix->image->img, &minilibix->image->pixel_bits,
+			&minilibix->image->line_len, &minilibix->image->endian); 
 	while (y < height)
 	{
 		x = 0;
@@ -59,8 +62,8 @@ void	calcule_mandel(int width, int height, int it_max, t_image image)
 			comp.z_real = 0;
 			comp.z_imag = 0;
 			i = calcule_mand(i, it_max, comp);
-			pos = (y * image.line_len) + (x * (image.pixel_bits / 8));
-			coloring_mand(pos, i, image, it_max);
+			pos = (y * minilibix->image->line_len) + (x * (minilibix->image->pixel_bits / 8));
+			coloring_mand(pos, i, *(minilibix->image), it_max);
 			x++;
 		}
 		y++;
@@ -88,14 +91,13 @@ void	mandel(void)
         exit(1);
 	}
 
-	image.img = mlx_new_image(minilibix.mlx, width, height);
-	image.buffer = mlx_get_data_addr(image.img, &image.pixel_bits,
-			&image.line_len, &image.endian); 
+	
 
 	//mlx_loop_hook(minilibix.mlx_win, &handle_no_event, &data);
    
-
-	calcule_mandel(width, height, it_max, image);
+	minilibix.image = &image;
+	calcule_mandel(width, height, it_max, &minilibix);
+	
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
 
 	mlx_key_hook(minilibix.mlx_win, handle_keys, m);
