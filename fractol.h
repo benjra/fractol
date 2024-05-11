@@ -15,8 +15,34 @@ int			ft_isdigit(int c);
 int			is_valid(char *av);
 void print_str(char *str);
 
+
+typedef struct s_image
+{
+	char	*buffer;
+	void	*img;
+	int		pixel_bits;
+	int		line_len;
+	int		endian;
+}			t_image;
+
+
+
+typedef struct mouse
+{
+	double crs_cx;
+	double crs_cy;
+	double max_y;
+	double min_y;
+	double max_x;
+	double min_x;
+	double max_iteration;
+
+}	t_mouse;
+
 typedef struct s_mlx
 {
+	int width;
+	int height;
 	void	*mlx;
 	void	*mlx_win;
 	double zoom;
@@ -32,16 +58,6 @@ typedef struct s_complex
 	double	c_imag;
 }			t_complex;
 
-typedef struct s_image
-{
-	char	*buffer;
-	void	*img;
-	int		pixel_bits;
-	int		line_len;
-	int		endian;
-}			t_image;
-
-
 enum {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -52,17 +68,10 @@ enum {
 	ON_DESTROY = 17
 };
 
-typedef struct mouse
-{
-	double crs_cx;
-	double crs_cy;
-	double max_y;
-	double min_y;
-	double max_x;
-	double min_x;
-	double max_iteration;
-
-}	t_mouse;
-
+void initialiser(t_mouse vars);
+int  mouse_hook(int key,t_mlx *vars);
+int	handle_keys(int keysym,t_mlx *data);
+//int closing(int keyy,t_mlx mlx);
+void	calcule_mandel(int width, int height, int it_max, t_image image);
 
 #endif

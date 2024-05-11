@@ -90,7 +90,7 @@ void	mandel(void)
 
 	image.img = mlx_new_image(minilibix.mlx, width, height);
 	image.buffer = mlx_get_data_addr(image.img, &image.pixel_bits,
-			&image.line_len, &image.endian);
+			&image.line_len, &image.endian); 
 
 	//mlx_loop_hook(minilibix.mlx_win, &handle_no_event, &data);
    
@@ -99,10 +99,8 @@ void	mandel(void)
 	mlx_put_image_to_window(minilibix.mlx, minilibix.mlx_win, image.img, 0, 0);
 
 	mlx_key_hook(minilibix.mlx_win, handle_keys, m);
-	mlx_hook(minilibix.mlx_win,17,0,closing,m);
+	//mlx_hook(minilibix.mlx_win,17,0,closing,m);
 	mlx_mouse_hook(minilibix.mlx_win, mouse_hook, m);
-//mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
-
 
 	mlx_loop(minilibix.mlx);
 	

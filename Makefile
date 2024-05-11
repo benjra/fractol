@@ -5,7 +5,8 @@ SRC_FILE =main.c \
 		 mandelbort.c \
 		 julia.c \
 		 utils.c \
-		 printstr.c
+		 printstr.c \
+		 hooks.c
 OBJ = $(SRC_FILE : .o:.c)
 
 %.o: %.c
