@@ -12,6 +12,8 @@ void ft_strlower(char *av)
 }
 int	main(int ac, char **av)
 {
+	if(ac > 1)
+	{
 	ft_strlower(av[1]);
 	if ((ac == 2 && ft_strcmp(av[1], "mandelbort")) || (ac == 4
 			&& ft_strcmp(av[1], "julia")))
@@ -28,6 +30,7 @@ int	main(int ac, char **av)
 		print_str("Please Enter :\nmandelbort OR julia <x> <y> ");
 		exit(1);
    
+	}
 	}
 }
                            

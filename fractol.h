@@ -20,7 +20,8 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*mlx_win;
 	double zoom;
-
+	t_image image;
+	t_mouse mouse;
 }			t_mlx;
 
 typedef struct s_complex
@@ -55,8 +56,10 @@ typedef struct mouse
 {
 	double crs_cx;
 	double crs_cy;
-	double max;
-	double min;
+	double max_y;
+	double min_y;
+	double max_x;
+	double min_x;
 	double max_iteration;
 
 }	t_mouse;
