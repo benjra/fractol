@@ -44,9 +44,7 @@ void	calcule_mandel(int width, int height, int it_max, t_mlx	*minilibix)
 
 	y = 0;
 	x = 0;
-	minilibix->image->img = mlx_new_image(minilibix->mlx, width, height);
-	minilibix->image->buffer = mlx_get_data_addr(minilibix->image->img, &minilibix->image->pixel_bits,
-			&minilibix->image->line_len, &minilibix->image->endian); 
+	
 	while (y < height)
 	{
 		x = 0;
@@ -90,7 +88,9 @@ void	mandel(void)
 		free(minilibix.mlx_win);
         exit(1);
 	}
-
+	m->image->img = mlx_new_image(m->mlx, width, height);
+	m->image->buffer = mlx_get_data_addr(m->image->img, &m->image->pixel_bits,
+			&m->image->line_len, &m->image->endian); 
 	
 
 	//mlx_loop_hook(minilibix.mlx_win, &handle_no_event, &data);

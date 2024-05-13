@@ -36,7 +36,7 @@ typedef struct mouse
 	double max_x;
 	double min_x;
 	double max_iteration;
-
+	
 }	t_mouse;
 
 typedef struct s_mlx
@@ -68,8 +68,8 @@ enum {
 	ON_DESTROY = 17
 };
 
-void initialiser(t_mouse vars);
-int  mouse_hook(int key,t_mlx *vars);
+void initialiser(t_mouse *vars);
+int  mouse_hook(int key,int x, int y,t_mlx *vars);
 int	handle_keys(int keysym,t_mlx *data);
 //int closing(int keyy,t_mlx mlx);
 void	calcule_mandel(int width, int height, int it_max, t_mlx	*minilibix);
