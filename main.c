@@ -12,6 +12,7 @@ void ft_strlower(char *av)
 }
 int	main(int ac, char **av)
 {
+	// printf("-----> here ");
 	if(ac > 1)
 	{
 	ft_strlower(av[1]);
@@ -19,7 +20,9 @@ int	main(int ac, char **av)
 			&& ft_strcmp(av[1], "julia")))
 	{
 		if (ft_strcmp(av[1], "mandelbort"))
+		{
 			mandel();
+		}
 		else if (ft_strcmp(av[1], "julia") && is_valid(av[2]) && is_valid(av[3]))
 			julia(ft_atod(av[2]), ft_atod(av[3]));
 		else

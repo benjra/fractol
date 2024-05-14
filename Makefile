@@ -1,5 +1,5 @@
 NAME = fractol
-CCFLGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CCFLGS = -Wall -Wextra -Werror  -fsanitize=address -g
 CC = cc
 SRC_FILE =main.c \
 		 mandelbort.c \
